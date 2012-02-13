@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QStatistics", "qStatitstics\QStatistics.csproj", "{52E2339C-7597-4661-9037-C7348861708E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52E2339C-7597-4661-9037-C7348861708E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E2339C-7597-4661-9037-C7348861708E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E2339C-7597-4661-9037-C7348861708E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E2339C-7597-4661-9037-C7348861708E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

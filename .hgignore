@@ -1,0 +1,11 @@
+syntax: glob
+*ReSharper*
+*.sln.DotSettings.user
+*.vbproj.user
+*.csproj.user
+*.vbproj.webinfo
+*.csproj.webinfo
+*\bin
+*\obj
+*.suo
+Backup
