@@ -33,6 +33,11 @@
     <Compile Update="Appcode\Data.cs">
       <DependentUpon>Data.xsd</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <None Update="Appcode\Data.xsc">
       <DependentUpon>Data.xsd</DependentUpon>
     </None>
@@ -43,6 +48,10 @@
     </None>
     <None Update="Appcode\Data.xss">
       <DependentUpon>Data.xsd</DependentUpon>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <BaseApplicationManifest Include="Properties\app.manifest" />
   </ItemGroup>
@@ -83,8 +92,5 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="ShowScoreForm.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="appsettings.json" />
   </ItemGroup>
 </Project>
