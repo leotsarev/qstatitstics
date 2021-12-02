@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="CorrectTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditPlayersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditTeamsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MatchesListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SetupRosterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ViewMatchStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ViewReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
