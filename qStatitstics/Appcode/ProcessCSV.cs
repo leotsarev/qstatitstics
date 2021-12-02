@@ -42,8 +42,7 @@ namespace QStatitstics.Appcode
             row.Nickname = (values.Length > 0) ? values[1] : "";
             if (values.Length > 1)
             {
-                int num;
-                Int32.TryParse(values[2], out num);
+                int.TryParse(values[2], out int num);
                 row.Number = num;
             }
             row.Team = TeamId;

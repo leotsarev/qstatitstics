@@ -101,10 +101,8 @@ namespace QStatitstics
                 var row = ((DataRowView)gridRow.DataBoundItem).Row as DataSet1.MatchesRow;
                 if (row == null) continue;
                 var reportGenerator = new MatchProtocol(new Match(row));
-                using (var sw = new StreamWriter(folder + "\\" + reportGenerator.GetFormHeader() + ".html"))
-                {
-                    sw.Write(reportGenerator.GetReportText());
-                }
+                using var sw = new StreamWriter(folder + "\\" + reportGenerator.GetFormHeader() + ".html");
+                sw.Write(reportGenerator.GetReportText());
             }
         }
     }

@@ -58,17 +58,15 @@ namespace QStatitstics.Reports
                     "INNER JOIN Teams ON Players.Team = Teams.TeamId " +
                     "WHERE Goals <> 0 ORDER BY Goals DESC")))
             {
-                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                using SQLiteDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        var row = table.NewRow();
-                        row[Nickname] = reader[0];
-                        row[Number] = reader[1];
-                        row[TeamName] = reader[2];
-                        row[Goals] = reader[3];
-                        table.Rows.Add(row);
-                    }
+                    var row = table.NewRow();
+                    row[Nickname] = reader[0];
+                    row[Number] = reader[1];
+                    row[TeamName] = reader[2];
+                    row[Goals] = reader[3];
+                    table.Rows.Add(row);
                 }
             }
             return table;

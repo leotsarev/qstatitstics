@@ -49,17 +49,15 @@ namespace QStatitstics.Reports
                         "SELECT Nickname, Number, Teams.Name as TeamName, COUNT(EventId) AS Snitches FROM Players INNER JOIN Teams ON Players.Team = Teams.TeamId LEFT JOIN Performance ON Performance.FirstPlayer = Players.PlayerId WHERE Performance.EventType = " +
                         (int)MatchEvent.EventType.Snitch + " GROUP BY PlayerId "))
             {
-                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                using SQLiteDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        DataRow row = table.NewRow();
-                        row[Nickname] = reader[0];
-                        row[Number] = reader[1];
-                        row[TeamName] = reader[2];
-                        row[Snitches] = reader[3];
-                        table.Rows.Add(row);
-                    }
+                    DataRow row = table.NewRow();
+                    row[Nickname] = reader[0];
+                    row[Number] = reader[1];
+                    row[TeamName] = reader[2];
+                    row[Snitches] = reader[3];
+                    table.Rows.Add(row);
                 }
             }
             return table;

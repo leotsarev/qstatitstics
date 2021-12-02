@@ -31,10 +31,8 @@ namespace QStatitstics
         {
             if (saveFileDialog.ShowDialog() != DialogResult.OK)
                 return;
-            using (var sw = new StreamWriter(saveFileDialog.OpenFile()))
-            {
-                sw.Write(reportText);
-            }
+            using var sw = new StreamWriter(saveFileDialog.OpenFile());
+            sw.Write(reportText);
         }
 
         private void PrintButton_Click(object sender, EventArgs e)

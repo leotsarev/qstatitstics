@@ -40,23 +40,19 @@ namespace QStatitstics.Appcode
             using (var conn = new SQLiteConnection(Settings.Default.DefaultConnectionString))
             {
                 conn.Open();
-                using (var cmd = conn.CreateCommand())
+                using var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Performance WHERE Match = " + row.MatchId;
+                cmd.CommandType = CommandType.Text;
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    cmd.CommandText = "SELECT * FROM Performance WHERE Match = " + row.MatchId;
-                    cmd.CommandType = CommandType.Text;
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var perRow = data.Performance.NewPerformanceRow();
-                            perRow.EventId = (long) reader["EventId"];
-                            perRow.EventType = (long) reader["EventType"];
-                            perRow.Time = (long) reader["Time"];
-                            perRow.FirstPlayer = (long) reader["FirstPlayer"];
-                            perRow.Match = row.MatchId;
-                            data.Performance.Rows.Add(perRow);
-                        }
-                    }
+                    var perRow = data.Performance.NewPerformanceRow();
+                    perRow.EventId = (long)reader["EventId"];
+                    perRow.EventType = (long)reader["EventType"];
+                    perRow.Time = (long)reader["Time"];
+                    perRow.FirstPlayer = (long)reader["FirstPlayer"];
+                    perRow.Match = row.MatchId;
+                    data.Performance.Rows.Add(perRow);
                 }
             }
             //adapter.FillMatchData(data.Performance, row.MatchId);
