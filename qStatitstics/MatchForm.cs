@@ -226,30 +226,39 @@ namespace QStatitstics
         {
             switch (Char.ToUpper(e.KeyChar))
             {
+                case 'ß':
                 case 'Z':
                     HomeButton.PerformClick();
                     return;
+                case '×':
                 case 'X':
                     VisitorsButton.PerformClick();
                     return;
+                case 'Ï':
                 case 'G':
                     SetEventType(MatchEvent.EventType.Goal);
                     return;
+                case 'À':
                 case 'F':
                     SetEventType(MatchEvent.EventType.Foul);
                     return;
+                case 'Å':
                 case 'T':
                     SetEventType(MatchEvent.EventType.TFoul);
                     return;
+                case 'Â':
                 case 'D':
                     SetEventType(MatchEvent.EventType.Disqual);
                     return;
+                case 'Ô':
                 case 'A':
                     SetEventType(MatchEvent.EventType.Timeout);
                     return;
+                case 'É':
                 case 'Q':
                     SetEventType(MatchEvent.EventType.Snitch);
                     return;
+                case 'Ñ':
                 case 'C':
                     if (DeleteLastButton.Enabled)
                     {
