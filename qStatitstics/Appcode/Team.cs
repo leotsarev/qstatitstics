@@ -80,7 +80,7 @@ namespace QStatitstics.Appcode
             return null;
         }
 
-        public TeamPlayer FindPlayerById(int id)
+        public TeamPlayer? FindPlayerById(int id)
         {
             foreach (var player in Roster)
             {

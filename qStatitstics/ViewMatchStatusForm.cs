@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Windows.Forms;
 using QStatitstics.Appcode;
 
@@ -6,11 +7,13 @@ namespace QStatitstics
     public partial class ViewMatchStatusForm : Form
     {
         private readonly Match match;
+        private readonly bool reverse;
 
-        public ViewMatchStatusForm(Match matchData)
+        public ViewMatchStatusForm(Match matchData, bool reverse)
         {
             InitializeComponent();
             match = matchData;
+            this.reverse = reverse;
         }
 
         public void UpdateInfo()
@@ -20,49 +23,62 @@ namespace QStatitstics
             var prow = match.GetLastEvent();
             if (prow == null)
                 return;
+
+            var et = (MatchEvent.EventType)prow.EventType;
+
             var homePlayer = match.HomeTeam.FindPlayerById((int) prow.FirstPlayer);
             var visPlayer = match.VisitorsTeam.FindPlayerById((int) prow.FirstPlayer);
-            HomeEventLabel.Visible = homePlayer != null;
-            VisitorsEventLabel.Visible = visPlayer != null;
-            StatusLabel.Visible = homePlayer != null || visPlayer != null;
-            if (homePlayer != null)
+            var player = homePlayer ?? visPlayer;
+            var eventName = GetEventName(et, player);
+
+            StatusLabel.TextAlign = ContentAlignment.BottomCenter;
+            if (player is not null)
             {
-                DisplayEvent(homePlayer, prow, HomeEventLabel);
+                StatusLabel.Text = $"{player.Number} {eventName}";
+                StatusLabel.Visible = true;
             }
-            else if (visPlayer != null)
+            else if (eventName is not null)
             {
-                DisplayEvent(visPlayer, prow, VisitorsEventLabel);
+                StatusLabel.Text = eventName;
+                StatusLabel.Visible = true;
+            }
+            else
+            {
+                StatusLabel.Visible = false;
             }
         }
 
-        private void DisplayEvent(TeamPlayer homePlayer, DataSet1.PerformanceRow prow, Control label)
+        private static string GetEventName(MatchEvent.EventType et, TeamPlayer player)
         {
-            var et = (MatchEvent.EventType) prow.EventType;
-            switch (et)
+            return et switch
             {
-                case MatchEvent.EventType.Goal:
-
-                    label.Text = "ÃÎË";
-                    break;
-                case MatchEvent.EventType.Snitch:
-                    label.Text = "Ñíèò÷!!";
-                    break;
-                case MatchEvent.EventType.Foul:
-                case MatchEvent.EventType.TFoul:
-                case MatchEvent.EventType.Disqual:
-                    label.Text = homePlayer.Fouls;
-                    break;
-                default:
-                    label.Visible = false;
-                    break;
-            }
-
-            StatusLabel.Text = string.Format("{0} {1}", homePlayer.Number, homePlayer.Name);
+                MatchEvent.EventType.Goal => "ÃÎË",
+                MatchEvent.EventType.Snitch => "Ñíèò÷ ïîéìàí",
+                MatchEvent.EventType.Foul or MatchEvent.EventType.TFoul or MatchEvent.EventType.Disqual => "Ôîëû: " + player.Fouls,
+                MatchEvent.EventType.Timeout => "ÒÀÉÌÀÓÒ",
+                _ => null,
+            };
         }
 
-        private void HomeEventLabel_Click(object sender, System.EventArgs e)
+        private void ViewMatchStatusForm_Resize(object sender, System.EventArgs e)
         {
+            var height = (int)(this.Size.Height * 0.7);
+            var width = (int)(this.Size.Width * 0.4);
 
+            HomeScoreLabel.Size=  VisitorsScoreLabel.Size = new Size(width, height);
+            if (reverse)
+            {
+                HomeScoreLabel.Location = new Point(ClientSize.Width - width - 20, 0);
+                VisitorsScoreLabel.Location = new Point(0, 0);
+            }
+            else
+            {
+                VisitorsScoreLabel.Location = new Point(ClientSize.Width - width - 20, 0);
+                HomeScoreLabel.Location = new Point(0, 0);
+            }
+
+            StatusLabel.Size = new Size(this.Size.Width - 20, (int)(this.Size.Height * 0.2));
+           
         }
     }
 }

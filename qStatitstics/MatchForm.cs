@@ -438,7 +438,8 @@ namespace QStatitstics
         private void OpenScoreFormButton_Click(object sender, EventArgs e)
         {
             if (ssf != null) return;
-            ssf = new ViewMatchStatusForm(MatchData);
+            var reverse = MessageBox.Show("Если форма будет показываться на мониторе, нажмите ДА. Если на проекторе, нажмите НЕТ.", "Перевернуть форму", MessageBoxButtons.YesNo) == DialogResult.Yes;
+            ssf = new ViewMatchStatusForm(MatchData, reverse);
             ssf.FormClosed += ssf_FormClosed;
             ssf.Show();
             ssf.UpdateInfo();
