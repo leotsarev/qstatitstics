@@ -38,7 +38,7 @@ namespace QStatitstics
             // HomeScoreLabel
             // 
             this.HomeScoreLabel.AutoSize = true;
-            this.HomeScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HomeScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HomeScoreLabel.Location = new System.Drawing.Point(588, 9);
             this.HomeScoreLabel.Margin = new System.Windows.Forms.Padding(0);
             this.HomeScoreLabel.Name = "HomeScoreLabel";
@@ -50,7 +50,7 @@ namespace QStatitstics
             // VisitorsScoreLabel
             // 
             this.VisitorsScoreLabel.AutoSize = true;
-            this.VisitorsScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.VisitorsScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.VisitorsScoreLabel.Location = new System.Drawing.Point(9, 9);
             this.VisitorsScoreLabel.Margin = new System.Windows.Forms.Padding(0);
             this.VisitorsScoreLabel.Name = "VisitorsScoreLabel";
@@ -62,7 +62,7 @@ namespace QStatitstics
             // HomeEventLabel
             // 
             this.HomeEventLabel.AutoSize = true;
-            this.HomeEventLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 160F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HomeEventLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 160F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.HomeEventLabel.ForeColor = System.Drawing.Color.Red;
             this.HomeEventLabel.Location = new System.Drawing.Point(630, 338);
             this.HomeEventLabel.Margin = new System.Windows.Forms.Padding(0);
@@ -77,7 +77,7 @@ namespace QStatitstics
             // StatusLabel
             // 
             this.StatusLabel.AutoSize = true;
-            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.StatusLabel.Location = new System.Drawing.Point(23, 641);
             this.StatusLabel.Margin = new System.Windows.Forms.Padding(0);
             this.StatusLabel.Name = "StatusLabel";
@@ -90,7 +90,7 @@ namespace QStatitstics
             // VisitorsEventLabel
             // 
             this.VisitorsEventLabel.AutoSize = true;
-            this.VisitorsEventLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 160F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.VisitorsEventLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 160F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.VisitorsEventLabel.ForeColor = System.Drawing.Color.Red;
             this.VisitorsEventLabel.Location = new System.Drawing.Point(19, 338);
             this.VisitorsEventLabel.Margin = new System.Windows.Forms.Padding(0);
@@ -111,10 +111,12 @@ namespace QStatitstics
             this.Controls.Add(this.HomeEventLabel);
             this.Controls.Add(this.VisitorsScoreLabel);
             this.Controls.Add(this.HomeScoreLabel);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 159.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 159.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(55, 60, 55, 60);
             this.Name = "ViewMatchStatusForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ShowScoreForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 
