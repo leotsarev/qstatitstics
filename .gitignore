@@ -6,3 +6,7 @@
 /.vs
 /qStatitstics/bin/Debug/net6.0-windows
 /qStatitstics/bin/Release/net6.0-windows
+/QStat.Package/AppPackages
+/QStat.Package/bin/AnyCPU
+/QStat.Package/obj
+/qStatitstics/bin/x86
