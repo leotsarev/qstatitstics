@@ -136,6 +136,19 @@ namespace QStatitstics
 
         private void ApplyEvent()
         {
+            if (ET.ET == MatchEvent.EventType.Snitch)
+            {
+                TechSuspendMatch();
+                var cancelSnitch = MessageBox.Show(
+                    $"Действительно ли СНИТЧ пойман игроком {FirstPlayer.Name} из команды {FirstPlayer.m_Team.Name}? Дождитесь окончательного решения судей.",
+                    "Окончание матча?", MessageBoxButtons.YesNo) == DialogResult.No;
+                BeginOrResumeMatch();
+                if (cancelSnitch) 
+                { 
+                    return;
+                }
+
+            }
             try
             {
                 var ev =
@@ -298,6 +311,11 @@ namespace QStatitstics
 
         private void TechStop_Click(object sender, EventArgs e)
         {
+            TechSuspendMatch();
+        }
+
+        private void TechSuspendMatch()
+        {
             TechStop.Enabled = false;
             MatchData.BeginPause();
             techStop = true;
@@ -328,6 +346,11 @@ namespace QStatitstics
         }
 
         private void BeginMatch_Click(object sender, EventArgs e)
+        {
+            BeginOrResumeMatch();
+        }
+
+        private void BeginOrResumeMatch()
         {
             if (MatchData.Paused)
             {

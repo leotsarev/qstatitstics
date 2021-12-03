@@ -58,7 +58,7 @@ namespace QStatitstics
             // HomeLabel
             // 
             this.HomeLabel.AutoSize = true;
-            this.HomeLabel.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HomeLabel.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HomeLabel.Location = new System.Drawing.Point(30, 26);
             this.HomeLabel.Name = "HomeLabel";
             this.HomeLabel.Size = new System.Drawing.Size(208, 25);
@@ -68,7 +68,7 @@ namespace QStatitstics
             // VisitorsLabel
             // 
             this.VisitorsLabel.AutoSize = true;
-            this.VisitorsLabel.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.VisitorsLabel.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.VisitorsLabel.Location = new System.Drawing.Point(852, 26);
             this.VisitorsLabel.Name = "VisitorsLabel";
             this.VisitorsLabel.Size = new System.Drawing.Size(204, 25);
@@ -79,9 +79,9 @@ namespace QStatitstics
             // 
             this.HomeGrid.AllowUserToAddRows = false;
             this.HomeGrid.AllowUserToDeleteRows = false;
-            this.HomeGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.HomeGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.HomeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.HomeGrid.Location = new System.Drawing.Point(12, 67);
             this.HomeGrid.Name = "HomeGrid";
@@ -95,9 +95,9 @@ namespace QStatitstics
             // 
             this.VisitorsGrid.AllowUserToAddRows = false;
             this.VisitorsGrid.AllowUserToDeleteRows = false;
-            this.VisitorsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.VisitorsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.VisitorsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.VisitorsGrid.Location = new System.Drawing.Point(814, 67);
             this.VisitorsGrid.Name = "VisitorsGrid";
@@ -111,9 +111,9 @@ namespace QStatitstics
             // 
             this.EventsGrid.AllowUserToAddRows = false;
             this.EventsGrid.AllowUserToDeleteRows = false;
-            this.EventsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.EventsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EventsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.EventsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.EventsGrid.Location = new System.Drawing.Point(378, 67);
@@ -160,7 +160,7 @@ namespace QStatitstics
             // TimeLabel
             // 
             this.TimeLabel.AutoSize = true;
-            this.TimeLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TimeLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TimeLabel.Location = new System.Drawing.Point(32, 659);
             this.TimeLabel.Name = "TimeLabel";
             this.TimeLabel.Size = new System.Drawing.Size(37, 23);
@@ -170,7 +170,7 @@ namespace QStatitstics
             // EventTypeLabel
             // 
             this.EventTypeLabel.AutoSize = true;
-            this.EventTypeLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EventTypeLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.EventTypeLabel.Location = new System.Drawing.Point(148, 659);
             this.EventTypeLabel.Name = "EventTypeLabel";
             this.EventTypeLabel.Size = new System.Drawing.Size(0, 23);
@@ -179,7 +179,7 @@ namespace QStatitstics
             // TeamLabel
             // 
             this.TeamLabel.AutoSize = true;
-            this.TeamLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TeamLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TeamLabel.Location = new System.Drawing.Point(415, 662);
             this.TeamLabel.Name = "TeamLabel";
             this.TeamLabel.Size = new System.Drawing.Size(0, 23);
@@ -188,7 +188,7 @@ namespace QStatitstics
             // FirstPlayerLabel
             // 
             this.FirstPlayerLabel.AutoSize = true;
-            this.FirstPlayerLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FirstPlayerLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FirstPlayerLabel.Location = new System.Drawing.Point(635, 662);
             this.FirstPlayerLabel.Name = "FirstPlayerLabel";
             this.FirstPlayerLabel.Size = new System.Drawing.Size(0, 23);
@@ -197,7 +197,7 @@ namespace QStatitstics
             // MatchTimeLabel
             // 
             this.MatchTimeLabel.AutoSize = true;
-            this.MatchTimeLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MatchTimeLabel.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MatchTimeLabel.Location = new System.Drawing.Point(542, 9);
             this.MatchTimeLabel.Name = "MatchTimeLabel";
             this.MatchTimeLabel.Size = new System.Drawing.Size(67, 23);
@@ -245,7 +245,7 @@ namespace QStatitstics
             // SnitchFlyingLabel
             // 
             this.SnitchFlyingLabel.AutoSize = true;
-            this.SnitchFlyingLabel.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SnitchFlyingLabel.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SnitchFlyingLabel.ForeColor = System.Drawing.Color.Red;
             this.SnitchFlyingLabel.Location = new System.Drawing.Point(518, 507);
             this.SnitchFlyingLabel.Name = "SnitchFlyingLabel";
@@ -310,16 +310,16 @@ namespace QStatitstics
             this.Controls.Add(this.HomeGrid);
             this.Controls.Add(this.VisitorsLabel);
             this.Controls.Add(this.HomeLabel);
-            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "MatchForm";
             this.Text = "MatchForm";
-            this.Load += new System.EventHandler(this.MatchForm_Load);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MatchForm_FormClosed);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MatchForm_KeyPress);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MatchForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MatchForm_FormClosed);
+            this.Load += new System.EventHandler(this.MatchForm_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MatchForm_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.HomeGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VisitorsGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EventsGrid)).EndInit();
