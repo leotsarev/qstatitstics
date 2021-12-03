@@ -114,6 +114,8 @@ namespace QStatitstics.Appcode
             }
         }
 
+        public bool Started => StartTime != DateTime.MinValue;
+
         public bool Paused
         {
             get { return PauseBegin != DateTime.MinValue; }

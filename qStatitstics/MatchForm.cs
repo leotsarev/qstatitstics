@@ -33,7 +33,7 @@ namespace QStatitstics
             bindingSource.DataSource = team.Roster;
             grid.DataSource = bindingSource;
             Utility.SetupColumn(grid, "DispPosition", 0, "А", 20);
-            Utility.SetupColumn(grid, "Number", 1, "№", 30);
+            Utility.SetupColumn(grid, "Number", 1, "№", 45);
             Utility.SetupColumn(grid, "Name", 2, "Имя", 120);
             Utility.SetupColumn(grid, "Goals", 3, "Гол", 35);
             Utility.SetupColumn(grid, "Fouls", 4, "Фолы", 120);
@@ -57,6 +57,8 @@ namespace QStatitstics
 
         private void UpdateGrids()
         {
+            //TODO this methods combines setup grids and update data. 
+            // Separate and m.b. use Observable things for grid
             SetBindingSource(HomeGrid, MatchData.HomeTeam);
             SetBindingSource(VisitorsGrid, MatchData.VisitorsTeam);
             SetupEventsGrid();

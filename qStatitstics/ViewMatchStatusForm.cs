@@ -18,11 +18,19 @@ namespace QStatitstics
 
         public void UpdateInfo()
         {
-            HomeScoreLabel.Text = match.HomeTeam.Score.ToString();
-            VisitorsScoreLabel.Text = match.VisitorsTeam.Score.ToString();
+            HomeScoreLabel.Text = match.HomeTeam.Score.ToString("000");
+            VisitorsScoreLabel.Text = match.VisitorsTeam.Score.ToString("000");
+            if (!match.Started)
+            {
+                StatusLabel.Text = "Ìàò÷ íå íà÷àëñÿ";
+                return;
+            }
             var prow = match.GetLastEvent();
             if (prow == null)
+            {
+                StatusLabel.Text = "";
                 return;
+            }
 
             var et = (MatchEvent.EventType)prow.EventType;
 
@@ -32,12 +40,7 @@ namespace QStatitstics
             var eventName = GetEventName(et, player);
 
             StatusLabel.TextAlign = ContentAlignment.BottomCenter;
-            if (player is not null)
-            {
-                StatusLabel.Text = $"{player.Number} {eventName}";
-                StatusLabel.Visible = true;
-            }
-            else if (eventName is not null)
+            if (eventName is not null)
             {
                 StatusLabel.Text = eventName;
                 StatusLabel.Visible = true;
@@ -52,8 +55,8 @@ namespace QStatitstics
         {
             return et switch
             {
-                MatchEvent.EventType.Goal => "ÃÎË",
-                MatchEvent.EventType.Snitch => "Ñíèò÷ ïîéìàí",
+                MatchEvent.EventType.Goal => $"ÃÎË {player.Number} {player.Name} ({player.GetGoals()})",
+                MatchEvent.EventType.Snitch => $"Ñíèò÷ ïîéìàí — {player.Number} {player.Name}",
                 MatchEvent.EventType.Foul or MatchEvent.EventType.TFoul or MatchEvent.EventType.Disqual => "Ôîëû: " + player.Fouls,
                 MatchEvent.EventType.Timeout => "ÒÀÉÌÀÓÒ",
                 _ => null,
@@ -63,7 +66,7 @@ namespace QStatitstics
         private void ViewMatchStatusForm_Resize(object sender, System.EventArgs e)
         {
             var height = (int)(this.Size.Height * 0.7);
-            var width = (int)(this.Size.Width * 0.4);
+            var width = (int)(this.Size.Width * 0.5);
 
             HomeScoreLabel.Size=  VisitorsScoreLabel.Size = new Size(width, height);
             if (reverse)

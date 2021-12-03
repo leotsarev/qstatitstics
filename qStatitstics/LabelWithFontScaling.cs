@@ -22,6 +22,10 @@ namespace QStatitstics
             {
                 prevSize = Bounds.Size;
                 prevText = Text;   
+                if (string.IsNullOrEmpty(Text))
+                {
+                    return;
+                }
 
                 float fontSize = NewFontSize(e.Graphics, this.Bounds.Size, Font, Text);
                 Font = new Font("Verdana", fontSize, FontStyle.Bold);
