@@ -35,8 +35,8 @@ namespace QStatitstics
             // 
             // VisitorsScoreLabel
             // 
-            this.VisitorsScoreLabel.BackColor = System.Drawing.Color.IndianRed;
-            this.VisitorsScoreLabel.Font = new System.Drawing.Font("Verdana", 170.219F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.VisitorsScoreLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.VisitorsScoreLabel.Font = new System.Drawing.Font("Verdana", 170.2191F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.VisitorsScoreLabel.Location = new System.Drawing.Point(0, 0);
             this.VisitorsScoreLabel.Name = "VisitorsScoreLabel";
             this.VisitorsScoreLabel.Size = new System.Drawing.Size(643, 338);
@@ -46,7 +46,7 @@ namespace QStatitstics
             // HomeScoreLabel
             // 
             this.HomeScoreLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.HomeScoreLabel.BackColor = System.Drawing.Color.DarkViolet;
+            this.HomeScoreLabel.BackColor = System.Drawing.SystemColors.Window;
             this.HomeScoreLabel.Font = new System.Drawing.Font("Verdana", 167.243F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HomeScoreLabel.Location = new System.Drawing.Point(552, 0);
             this.HomeScoreLabel.Name = "HomeScoreLabel";
@@ -58,7 +58,7 @@ namespace QStatitstics
             // StatusLabel
             // 
             this.StatusLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.StatusLabel.Font = new System.Drawing.Font("Verdana", 77.61313F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusLabel.Font = new System.Drawing.Font("Verdana", 77.61314F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.StatusLabel.Location = new System.Drawing.Point(0, 626);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(1179, 159);

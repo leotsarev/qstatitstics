@@ -105,7 +105,7 @@ namespace QStatitstics
             this.VisitorsGrid.RowHeadersWidth = 4;
             this.VisitorsGrid.Size = new System.Drawing.Size(360, 421);
             this.VisitorsGrid.TabIndex = 19;
-            this.VisitorsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VisitorsGrid_CellClick);
+            this.VisitorsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VisitorsGrid_CellClick);
             // 
             // EventsGrid
             // 
