@@ -450,7 +450,8 @@ namespace QStatitstics
         {
             if (ssf != null) return;
             var reverse = MessageBox.Show("Если форма будет показываться на мониторе, нажмите ДА. Если на проекторе, нажмите НЕТ.", "Перевернуть форму", MessageBoxButtons.YesNo) == DialogResult.Yes;
-            ssf = new ViewMatchStatusForm(MatchData, reverse);
+            var showTimer = MessageBox.Show("Если надо показывать часы, нажмите ДА. Если не надо, нажмите НЕТ.", "Показать часы", MessageBoxButtons.YesNo) == DialogResult.Yes;
+            ssf = new ViewMatchStatusForm(MatchData, reverse, showTimer);
             ssf.FormClosed += ssf_FormClosed;
             ssf.Show();
             ssf.UpdateInfo();

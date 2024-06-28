@@ -8,12 +8,26 @@ namespace QStatitstics
     {
         private readonly Match match;
         private readonly bool reverse;
+        private readonly Timer timer;
 
-        public ViewMatchStatusForm(Match matchData, bool reverse)
+        public ViewMatchStatusForm(Match matchData, bool reverse, bool showTimer)
         {
             InitializeComponent();
             match = matchData;
             this.reverse = reverse;
+
+            if (showTimer)
+            {
+                timer = new Timer();
+                timer.Interval = 500;
+                timer.Tick += Timer_Tick;
+                timer.Start();
+            }
+        }
+
+        private void Timer_Tick(object sender, System.EventArgs e)
+        {
+            TimerLabel.Text = Utility.FormatTimeSpan(match.MatchTime);
         }
 
         public void UpdateInfo()
@@ -34,8 +48,8 @@ namespace QStatitstics
 
             var et = (MatchEvent.EventType)prow.EventType;
 
-            var homePlayer = match.HomeTeam.FindPlayerById((int) prow.FirstPlayer);
-            var visPlayer = match.VisitorsTeam.FindPlayerById((int) prow.FirstPlayer);
+            var homePlayer = match.HomeTeam.FindPlayerById((int)prow.FirstPlayer);
+            var visPlayer = match.VisitorsTeam.FindPlayerById((int)prow.FirstPlayer);
             var player = homePlayer ?? visPlayer;
             var eventName = GetEventName(et, player);
 
@@ -68,7 +82,7 @@ namespace QStatitstics
             var height = (int)(this.Size.Height * 0.7);
             var width = (int)(this.Size.Width * 0.5);
 
-            HomeScoreLabel.Size=  VisitorsScoreLabel.Size = new Size(width, height);
+            HomeScoreLabel.Size = VisitorsScoreLabel.Size = new Size(width, height);
             if (reverse)
             {
                 HomeScoreLabel.Location = new Point(ClientSize.Width - width - 20, 0);
@@ -81,7 +95,12 @@ namespace QStatitstics
             }
 
             StatusLabel.Size = new Size(this.Size.Width - 20, (int)(this.Size.Height * 0.2));
-           
+
+        }
+
+        private void ViewMatchStatusForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timer.Dispose();
         }
     }
 }
