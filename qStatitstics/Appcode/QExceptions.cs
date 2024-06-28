@@ -1,33 +1,32 @@
 using System;
 
-namespace QStatitstics.Appcode
+namespace QStatitstics.Appcode;
+
+[Serializable]
+public class NotEnoughPlayersException : Exception
 {
-    [Serializable]
-    public class NotEnoughPlayersException : Exception
+    public NotEnoughPlayersException(string teamName)
+        :
+            base("Недостаточно игроков в команде «" + teamName + "»")
     {
-        public NotEnoughPlayersException(string teamName)
-            :
-                base("Недостаточно игроков в команде «" + teamName + "»")
-        {
-        }
     }
+}
 
-    [Serializable]
-    public class EventMalformedException : Exception
+[Serializable]
+public class EventMalformedException : Exception
+{
+    public EventMalformedException(string msg)
+        : base(msg)
     {
-        public EventMalformedException(string msg)
-            : base(msg)
-        {
-        }
     }
+}
 
-    [Serializable]
-    public class ReadOnlyMatchException : Exception
+[Serializable]
+public class ReadOnlyMatchException : Exception
+{
+    public ReadOnlyMatchException()
+        :
+            base("Невозможно внести изменения!")
     {
-        public ReadOnlyMatchException()
-            :
-                base("Невозможно внести изменения!")
-        {
-        }
     }
 }

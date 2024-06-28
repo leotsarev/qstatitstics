@@ -3,126 +3,125 @@ using System.Windows.Forms;
 using QStatitstics.Appcode;
 using QStatitstics.Properties;
 
-namespace QStatitstics
+namespace QStatitstics;
+
+public partial class MainForm : Form
 {
-    public partial class MainForm : Form
+    public MainForm()
     {
-        public MainForm()
+        InitializeComponent();
+    }
+
+    private void teamsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        dataSet1.Teams.Rows.Clear();
+        var teamsForm = new EditTeamsForm();
+        teamsForm.ShowDialog();
+        ReloadData();
+    }
+
+    private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Close();
+    }
+
+    private void playersToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (dataSet1.Teams.Rows.Count == 0)
         {
-            InitializeComponent();
+            MessageBox.Show("Надо сначала создать какую-то команду", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+        var playersForm = new EditPlayersForm();
+        playersForm.ShowDialog();
+    }
+
+    private void MainForm_Load(object sender, EventArgs e)
+    {
+        ReloadData();
+        if (!Settings.Default.CanEditPlayers)
+        {
+            playersToolStripMenuItem.Enabled =
+                manageToolStripMenuItem.Enabled = teamsToolStripMenuItem.Enabled = false;
+        }
+    }
+
+    private void ReloadData()
+    {
+        teamsTableAdapter.FillActiveTeams(dataSet1.Teams);
+        int teamsCount = dataSet1.Teams.Rows.Count;
+        if (teamsCount > 1)
+        {
+            VisitorsTeamDropDown.SelectedIndex = 1;
+            playersToolStripMenuItem.Enabled =
+                VisitorsTeamDropDown.Enabled = HomeTeamDropDown.Enabled = BeginMatchButton.Enabled = true;
+        }
+        else
+        {
+            playersToolStripMenuItem.Enabled = (teamsCount != 0);
+
+            VisitorsTeamDropDown.Enabled = HomeTeamDropDown.Enabled = BeginMatchButton.Enabled = false;
+        }
+    }
+
+    private void BeginMatchButton_Click(object sender, EventArgs e)
+    {
+        var Home = (int) (long) HomeTeamDropDown.SelectedValue;
+        var Visitors = (int) (long) VisitorsTeamDropDown.SelectedValue;
+        if (Home == Visitors)
+        {
+            MessageBox.Show("Команда не может сыграть матч сама с собой!");
+            return;
         }
 
-        private void teamsToolStripMenuItem_Click(object sender, EventArgs e)
+        Team homeTeam;
+        Team visitorsTeam;
+        try
         {
-            dataSet1.Teams.Rows.Clear();
-            var teamsForm = new EditTeamsForm();
-            teamsForm.ShowDialog();
-            ReloadData();
+            homeTeam = new Team(Home);
+            visitorsTeam = new Team(Visitors);
         }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        catch (NotEnoughPlayersException exception)
         {
-            Close();
+            MessageBox.Show(exception.Message);
+            return;
         }
-
-        private void playersToolStripMenuItem_Click(object sender, EventArgs e)
+        if (SetupTeam(homeTeam) && SetupTeam(visitorsTeam))
         {
-            if (dataSet1.Teams.Rows.Count == 0)
-            {
-                MessageBox.Show("Надо сначала создать какую-то команду", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            var playersForm = new EditPlayersForm();
-            playersForm.ShowDialog();
+            var match = new Match(homeTeam, visitorsTeam);
+            var matchForm = new MatchForm(match);
+            matchForm.ShowDialog();
         }
+    }
 
-        private void MainForm_Load(object sender, EventArgs e)
+    private static bool SetupTeam(Team homeTeam)
+    {
+        var chooseHomePlayers = new SetupRosterForm(homeTeam);
+        chooseHomePlayers.ShowDialog();
+        return (chooseHomePlayers.DialogResult == DialogResult.OK);
+    }
+
+    private void matchesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var mlf = new MatchesListForm();
+        mlf.ShowDialog();
+    }
+
+    private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == '\n')
         {
-            ReloadData();
-            if (!Settings.Default.CanEditPlayers)
-            {
-                playersToolStripMenuItem.Enabled =
-                    manageToolStripMenuItem.Enabled = teamsToolStripMenuItem.Enabled = false;
-            }
+            BeginMatchButton.PerformClick();
         }
+    }
 
-        private void ReloadData()
-        {
-            teamsTableAdapter.FillActiveTeams(dataSet1.Teams);
-            int teamsCount = dataSet1.Teams.Rows.Count;
-            if (teamsCount > 1)
-            {
-                VisitorsTeamDropDown.SelectedIndex = 1;
-                playersToolStripMenuItem.Enabled =
-                    VisitorsTeamDropDown.Enabled = HomeTeamDropDown.Enabled = BeginMatchButton.Enabled = true;
-            }
-            else
-            {
-                playersToolStripMenuItem.Enabled = (teamsCount != 0);
+    private void playersToolStripMenuItem1_Click(object sender, EventArgs e)
+    {
+        ViewReportForm.ShowBestSeekers();
+    }
 
-                VisitorsTeamDropDown.Enabled = HomeTeamDropDown.Enabled = BeginMatchButton.Enabled = false;
-            }
-        }
-
-        private void BeginMatchButton_Click(object sender, EventArgs e)
-        {
-            var Home = (int) (long) HomeTeamDropDown.SelectedValue;
-            var Visitors = (int) (long) VisitorsTeamDropDown.SelectedValue;
-            if (Home == Visitors)
-            {
-                MessageBox.Show("Команда не может сыграть матч сама с собой!");
-                return;
-            }
-
-            Team homeTeam;
-            Team visitorsTeam;
-            try
-            {
-                homeTeam = new Team(Home);
-                visitorsTeam = new Team(Visitors);
-            }
-            catch (NotEnoughPlayersException exception)
-            {
-                MessageBox.Show(exception.Message);
-                return;
-            }
-            if (SetupTeam(homeTeam) && SetupTeam(visitorsTeam))
-            {
-                var match = new Match(homeTeam, visitorsTeam);
-                var matchForm = new MatchForm(match);
-                matchForm.ShowDialog();
-            }
-        }
-
-        private static bool SetupTeam(Team homeTeam)
-        {
-            var chooseHomePlayers = new SetupRosterForm(homeTeam);
-            chooseHomePlayers.ShowDialog();
-            return (chooseHomePlayers.DialogResult == DialogResult.OK);
-        }
-
-        private void matchesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var mlf = new MatchesListForm();
-            mlf.ShowDialog();
-        }
-
-        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\n')
-            {
-                BeginMatchButton.PerformClick();
-            }
-        }
-
-        private void playersToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ViewReportForm.ShowBestSeekers();
-        }
-
-        private void охотникиВратариToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ViewReportForm.ShowBestChasers();
-        }
+    private void охотникиВратариToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ViewReportForm.ShowBestChasers();
     }
 }

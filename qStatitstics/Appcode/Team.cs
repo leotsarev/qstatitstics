@@ -2,109 +2,108 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using QStatitstics.Appcode.DataSet1TableAdapters;
 
-namespace QStatitstics.Appcode
+namespace QStatitstics.Appcode;
+
+public class Team
 {
-    public class Team
+    public const int GoalValue = 10;
+    public const int PlayersCount = 7;
+    public const int SnitchValue = 50;
+    private readonly int _TeamID;
+    private readonly DataSet1 data = new DataSet1();
+    public Match match;
+    public List<TeamPlayer> Roster = new List<TeamPlayer>();
+
+    public Team(int teamID)
     {
-        public const int GoalValue = 10;
-        public const int PlayersCount = 7;
-        public const int SnitchValue = 50;
-        private readonly int _TeamID;
-        private readonly DataSet1 data = new DataSet1();
-        public Match match;
-        public List<TeamPlayer> Roster = new List<TeamPlayer>();
-
-        public Team(int teamID)
+        _TeamID = teamID;
+        var teamsAdapter = new TeamsTableAdapter();
+        teamsAdapter.Fill(data.Teams);
+        var playersAdapter = new PlayersTableAdapter();
+        playersAdapter.FillByTeam(data.Players, teamID);
+        if (data.Players.Rows.Count < PlayersCount)
         {
-            _TeamID = teamID;
-            var teamsAdapter = new TeamsTableAdapter();
-            teamsAdapter.Fill(data.Teams);
-            var playersAdapter = new PlayersTableAdapter();
-            playersAdapter.FillByTeam(data.Players, teamID);
-            if (data.Players.Rows.Count < PlayersCount)
-            {
-                throw new NotEnoughPlayersException(Name);
-            }
-            foreach (DataSet1.PlayersRow row in data.Players)
-            {
-                var player = new TeamPlayer(this, (int) row.PlayerId);
-                Roster.Add(player);
-            }
+            throw new NotEnoughPlayersException(Name);
         }
-
-        public int TeamID
+        foreach (DataSet1.PlayersRow row in data.Players)
         {
-            get { return _TeamID; }
+            var player = new TeamPlayer(this, (int) row.PlayerId);
+            Roster.Add(player);
         }
+    }
 
-        public string Name
+    public int TeamID
+    {
+        get { return _TeamID; }
+    }
+
+    public string Name
+    {
+        get { return data.Teams.FindByTeamId(TeamID).Name; }
+    }
+
+    public int Score
+    {
+        get
         {
-            get { return data.Teams.FindByTeamId(TeamID).Name; }
-        }
-
-        public int Score
-        {
-            get
-            {
-                var score = 0;
-                foreach (var player in Roster)
-                {
-                    score += match.GetPlayerGoalsCount(player.ID)*GoalValue;
-                    score += match.GetPlayersSnitchesCount(player.ID)*SnitchValue;
-                }
-
-                return score;
-            }
-        }
-
-        public void FillListBox(ListBox lb)
-        {
+            var score = 0;
             foreach (var player in Roster)
             {
-                lb.Items.Add(player);
+                score += match.GetPlayerGoalsCount(player.ID)*GoalValue;
+                score += match.GetPlayersSnitchesCount(player.ID)*SnitchValue;
             }
-        }
 
-        public DataSet1.PlayersRow GetPlayer(int ID)
-        {
-            return data.Players.FindByPlayerId(ID);
+            return score;
         }
+    }
 
-        public TeamPlayer FindPlayerByNum(int num)
+    public void FillListBox(ListBox lb)
+    {
+        foreach (var player in Roster)
         {
-            foreach (var player in Roster)
-            {
-                if (player.Number == num)
-                    return player;
-            }
-            return null;
+            lb.Items.Add(player);
         }
+    }
 
-        public TeamPlayer? FindPlayerById(int id)
+    public DataSet1.PlayersRow GetPlayer(int ID)
+    {
+        return data.Players.FindByPlayerId(ID);
+    }
+
+    public TeamPlayer FindPlayerByNum(int num)
+    {
+        foreach (var player in Roster)
         {
-            foreach (var player in Roster)
-            {
-                if (player.ID == id)
-                    return player;
-            }
-            return null;
+            if (player.Number == num)
+                return player;
         }
+        return null;
+    }
 
-        public void WriteRoster()
+    public TeamPlayer? FindPlayerById(int id)
+    {
+        foreach (var player in Roster)
         {
-            foreach (var player in Roster)
-            {
-                match.WritePlayerPosition(player);
-            }
+            if (player.ID == id)
+                return player;
         }
+        return null;
+    }
 
-        public void TrySetPosition(int playerId, TeamPlayer.Position position)
+    public void WriteRoster()
+    {
+        foreach (var player in Roster)
         {
-            var homePlayer = FindPlayerById(playerId);
-            if (homePlayer != null)
-            {
-                homePlayer.PlayerPosition = position;
-            }
+            match.WritePlayerPosition(player);
+        }
+    }
+
+    public void TrySetPosition(int playerId, TeamPlayer.Position position)
+    {
+        var homePlayer = FindPlayerById(playerId);
+        if (homePlayer != null)
+        {
+            homePlayer.PlayerPosition = position;
         }
     }
 }

@@ -1,194 +1,193 @@
 using System;
 
-namespace QStatitstics.Appcode
+namespace QStatitstics.Appcode;
+
+public class TeamPlayer : IComparable<TeamPlayer>
 {
-    public class TeamPlayer : IComparable<TeamPlayer>
+    #region Position enum
+
+    public enum Position
     {
-        #region Position enum
+        None = 0,
+        Chaser = 1,
+        Beater = 2,
+        Keeper = 3,
+        Seeker = 4
+    }
 
-        public enum Position
+    #endregion
+
+    public readonly int ID;
+    public Team m_Team;
+    public Position PlayerPosition = Position.None;
+
+    public TeamPlayer(Team team, int playerId)
+    {
+        m_Team = team;
+        ID = playerId;
+    }
+
+    public int Number
+    {
+        get { return m_Team.GetPlayer(ID).Number; }
+    }
+
+    public string Name
+    {
+        get { return m_Team.GetPlayer(ID).Nickname; }
+    }
+
+    public string DispPosition
+    {
+        get { return GetPositionTypeShortName(PlayerPosition); }
+    }
+
+    public string Goals
+    {
+        get { return GetGoals().ToString(); }
+    }
+
+
+    public string Fouls
+    {
+        get
         {
-            None = 0,
-            Chaser = 1,
-            Beater = 2,
-            Keeper = 3,
-            Seeker = 4
-        }
-
-        #endregion
-
-        public readonly int ID;
-        public Team m_Team;
-        public Position PlayerPosition = Position.None;
-
-        public TeamPlayer(Team team, int playerId)
-        {
-            m_Team = team;
-            ID = playerId;
-        }
-
-        public int Number
-        {
-            get { return m_Team.GetPlayer(ID).Number; }
-        }
-
-        public string Name
-        {
-            get { return m_Team.GetPlayer(ID).Nickname; }
-        }
-
-        public string DispPosition
-        {
-            get { return GetPositionTypeShortName(PlayerPosition); }
-        }
-
-        public string Goals
-        {
-            get { return GetGoals().ToString(); }
-        }
-
-
-        public string Fouls
-        {
-            get
+            int fouls = m_Team.match.GetPlayerFoalsCount(ID);
+            int tfouls = m_Team.match.GetPlayerTFoalsCount(ID);
+            if (m_Team.match.IsPlayerDisqualed(ID) || tfouls > 1 || tfouls + fouls > 4)
             {
-                int fouls = m_Team.match.GetPlayerFoalsCount(ID);
-                int tfouls = m_Team.match.GetPlayerTFoalsCount(ID);
-                if (m_Team.match.IsPlayerDisqualed(ID) || tfouls > 1 || tfouls + fouls > 4)
-                {
-                    return "Удаление";
-                }
-                string result = "";
-                if (tfouls != 0)
-                {
-                    result = "УФ";
-                }
-                if (tfouls != 0 && fouls != 0)
-                {
-                    result += " + ";
-                }
-                if (fouls != 0)
-                {
-                    result += fouls.ToString();
-                }
-                return result;
+                return "Удаление";
             }
-        }
-
-        #region IComparable<TeamPlayer> Members
-
-        public int CompareTo(TeamPlayer other)
-        {
-            if (other == null)
+            string result = "";
+            if (tfouls != 0)
             {
-                return 1;
+                result = "УФ";
             }
-
-            if (PlayerPosition > other.PlayerPosition)
+            if (tfouls != 0 && fouls != 0)
             {
-                return 1;
+                result += " + ";
             }
-            if (PlayerPosition < other.PlayerPosition)
+            if (fouls != 0)
             {
-                return -1;
+                result += fouls.ToString();
             }
-
-            if (Number > other.Number)
-            {
-                return 1;
-            }
-            if (Number < other.Number)
-            {
-                return -1;
-            }
-            return 0;
+            return result;
         }
+    }
 
-        #endregion
+    #region IComparable<TeamPlayer> Members
 
-        public override int GetHashCode()
+    public int CompareTo(TeamPlayer other)
+    {
+        if (other == null)
         {
-            return ID;
+            return 1;
         }
 
-        public override bool Equals(object obj)
+        if (PlayerPosition > other.PlayerPosition)
         {
-            var other = obj as TeamPlayer;
-            if (other == null)
-                return false;
-            return ID == other.ID;
+            return 1;
         }
-
-        public static string GetPositionTypeShortName(Position positionType)
+        if (PlayerPosition < other.PlayerPosition)
         {
-            switch (positionType)
-            {
-                case Position.Chaser:
-                    return "О";
-                case Position.Beater:
-                    return "З";
-                case Position.Keeper:
-                    return "В";
-                case Position.Seeker:
-                    return "Л";
-                case Position.None:
-                    return "";
-            }
-            throw new ArgumentOutOfRangeException("positionType", positionType, "Неизвестная позиция на поле");
+            return -1;
         }
 
-        public static string GetPositionTypeName(Position positionType)
+        if (Number > other.Number)
         {
-            switch (positionType)
-            {
-                case Position.Chaser:
-                    return "Охотник";
-                case Position.Beater:
-                    return "Загонщик";
-                case Position.Keeper:
-                    return "Вратарь";
-                case Position.Seeker:
-                    return "Ловец";
-                case Position.None:
-                    return "";
-            }
-            throw new ArgumentOutOfRangeException("positionType", positionType, "Неизвестная позиция на поле");
+            return 1;
         }
-
-        public bool IsPositionType(Position positionType)
+        if (Number < other.Number)
         {
-            return PlayerPosition == positionType;
+            return -1;
         }
+        return 0;
+    }
 
-        public int GetGoals()
+    #endregion
+
+    public override int GetHashCode()
+    {
+        return ID;
+    }
+
+    public override bool Equals(object obj)
+    {
+        var other = obj as TeamPlayer;
+        if (other == null)
+            return false;
+        return ID == other.ID;
+    }
+
+    public static string GetPositionTypeShortName(Position positionType)
+    {
+        switch (positionType)
         {
-            return m_Team.match.GetPlayerGoalsCount(ID);
+            case Position.Chaser:
+                return "О";
+            case Position.Beater:
+                return "З";
+            case Position.Keeper:
+                return "В";
+            case Position.Seeker:
+                return "Л";
+            case Position.None:
+                return "";
         }
+        throw new ArgumentOutOfRangeException("positionType", positionType, "Неизвестная позиция на поле");
+    }
 
-        public override string ToString()
+    public static string GetPositionTypeName(Position positionType)
+    {
+        switch (positionType)
         {
-            return Name;
+            case Position.Chaser:
+                return "Охотник";
+            case Position.Beater:
+                return "Загонщик";
+            case Position.Keeper:
+                return "Вратарь";
+            case Position.Seeker:
+                return "Ловец";
+            case Position.None:
+                return "";
         }
+        throw new ArgumentOutOfRangeException("positionType", positionType, "Неизвестная позиция на поле");
+    }
 
-        public bool IsChaser()
-        {
-            return PlayerPosition == Position.Chaser;
-        }
+    public bool IsPositionType(Position positionType)
+    {
+        return PlayerPosition == positionType;
+    }
 
-        public bool IsBeater()
-        {
-            return PlayerPosition == Position.Beater;
-        }
+    public int GetGoals()
+    {
+        return m_Team.match.GetPlayerGoalsCount(ID);
+    }
 
-        public bool CanPlaySeeker()
-        {
-            return m_Team.GetPlayer(ID).Seeker != 0;
-        }
+    public override string ToString()
+    {
+        return Name;
+    }
+
+    public bool IsChaser()
+    {
+        return PlayerPosition == Position.Chaser;
+    }
+
+    public bool IsBeater()
+    {
+        return PlayerPosition == Position.Beater;
+    }
+
+    public bool CanPlaySeeker()
+    {
+        return m_Team.GetPlayer(ID).Seeker != 0;
+    }
 
 
-        public int GetMissedGoals()
-        {
-            return m_Team.match.GetPlayer2EventsCount(ID, MatchEvent.EventType.Goal);
-        }
+    public int GetMissedGoals()
+    {
+        return m_Team.match.GetPlayer2EventsCount(ID, MatchEvent.EventType.Goal);
     }
 }

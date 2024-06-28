@@ -1,6 +1,5 @@
-﻿namespace QStatitstics.Appcode
+﻿namespace QStatitstics.Appcode;
+
+partial class DataSet1
 {
-    partial class DataSet1
-    {
-    }
 }
