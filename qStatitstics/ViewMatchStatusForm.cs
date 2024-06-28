@@ -1,5 +1,3 @@
-using System.Drawing;
-using System.Windows.Forms;
 using QStatitstics.Appcode;
 
 namespace QStatitstics;
@@ -8,7 +6,7 @@ public partial class ViewMatchStatusForm : Form
 {
     private readonly Match match;
     private readonly bool reverse;
-    private readonly Timer timer;
+    private readonly System.Windows.Forms.Timer timer;
 
     public ViewMatchStatusForm(Match matchData, bool reverse, bool showTimer)
     {
@@ -18,7 +16,7 @@ public partial class ViewMatchStatusForm : Form
 
         if (showTimer)
         {
-            timer = new Timer();
+            timer = new System.Windows.Forms.Timer();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
             timer.Start();

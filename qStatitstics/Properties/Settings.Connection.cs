@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace QStatitstics.Properties;
+﻿namespace QStatitstics.Properties;
 
 internal partial class Settings
 {

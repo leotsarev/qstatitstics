@@ -1,7 +1,4 @@
-using System;
 using System.Data;
-using System.IO;
-using System.Windows.Forms;
 using QStatitstics.Appcode;
 using QStatitstics.Appcode.DataSet1TableAdapters;
 using QStatitstics.Reports;

@@ -1,5 +1,3 @@
-using System;
-
 namespace QStatitstics.Appcode;
 
 public class TeamPlayer : IComparable<TeamPlayer>

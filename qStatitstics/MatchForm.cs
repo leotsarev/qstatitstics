@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using QStatitstics.Appcode;
 
 namespace QStatitstics;

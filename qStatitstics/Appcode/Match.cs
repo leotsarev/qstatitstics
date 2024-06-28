@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 using System.Data.SQLite;
 using QStatitstics.Appcode.DataSet1TableAdapters;

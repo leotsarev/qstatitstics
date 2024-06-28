@@ -1,5 +1,3 @@
-using System;
-
 namespace QStatitstics.Appcode;
 
 internal class Utility

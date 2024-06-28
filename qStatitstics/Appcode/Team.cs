@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Windows.Forms;
 using QStatitstics.Appcode.DataSet1TableAdapters;
 
 namespace QStatitstics.Appcode;

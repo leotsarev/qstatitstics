@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace QStatitstics.Appcode;
+﻿namespace QStatitstics.Appcode;
 
 public static class ColumnHelper
 {
