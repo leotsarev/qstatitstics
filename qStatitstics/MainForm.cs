@@ -58,7 +58,7 @@ namespace QStatitstics
             }
             else
             {
-                playersToolStripMenuItem.Enabled = (teamsCount == 0);
+                playersToolStripMenuItem.Enabled = (teamsCount != 0);
 
                 VisitorsTeamDropDown.Enabled = HomeTeamDropDown.Enabled = BeginMatchButton.Enabled = false;
             }
