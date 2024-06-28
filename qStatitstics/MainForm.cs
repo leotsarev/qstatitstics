@@ -2,7 +2,6 @@ using System;
 using System.Windows.Forms;
 using QStatitstics.Appcode;
 using QStatitstics.Properties;
-using QStatitstics.Reports;
 
 namespace QStatitstics
 {
@@ -28,6 +27,11 @@ namespace QStatitstics
 
         private void playersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (dataSet1.Teams.Rows.Count == 0)
+            {
+                MessageBox.Show("Надо сначала создать какую-то команду", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var playersForm = new EditPlayersForm();
             playersForm.ShowDialog();
         }
