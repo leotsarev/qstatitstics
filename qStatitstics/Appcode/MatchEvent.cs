@@ -61,6 +61,8 @@ public class MatchEvent
         }
     }
 
+    public string Player1Num =>  (etype == EventType.Timeout) ? "" : Player1.Number.ToString();
+
     public static string GetEventTypeName(EventType et)
     {
         switch (et)

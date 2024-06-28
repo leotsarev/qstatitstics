@@ -75,7 +75,8 @@ public partial class MatchForm : Form
         EventsGrid.DataSource = bindingSource;
         EventsGrid.SetupColumn("EventTime", 0, "Время", 50);
         EventsGrid.SetupColumn("Name", 1, "Событие", 130);
-        EventsGrid.SetupColumn("Player1Name", 2, "Игрок", 130);
+        EventsGrid.SetupColumn("Player1Num", 2, "№", 45);
+        EventsGrid.SetupColumn("Player1Name", 3, "Игрок", 130);
     }
 
     private void EventTypeBox_SelectedIndexChanged(object sender, EventArgs e)
