@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Forms;
 
 namespace QStatitstics.Appcode
 {
@@ -7,27 +6,6 @@ namespace QStatitstics.Appcode
     {
         private Utility()
         {
-        }
-
-        public static void HideColumn(DataGridView grid, string columnName)
-        {
-            var column = grid.Columns[columnName];
-            if (column != null)
-            {
-                column.Visible = false;
-            }
-        }
-
-        public static void SetupColumn(DataGridView grid, string columnName, int displayIdx, string name, int width)
-        {
-            var column = grid.Columns[columnName];
-            if (column == null)
-            {
-                return;
-            }
-            column.DisplayIndex = displayIdx;
-            column.HeaderText = name;
-            column.Width = width;
         }
 
         public static string FormatTimeSpan(long ticks)

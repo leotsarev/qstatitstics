@@ -32,12 +32,12 @@ namespace QStatitstics
             team.Roster.Sort();
             bindingSource.DataSource = team.Roster;
             grid.DataSource = bindingSource;
-            Utility.SetupColumn(grid, "DispPosition", 0, "А", 20);
-            Utility.SetupColumn(grid, "Number", 1, "№", 45);
-            Utility.SetupColumn(grid, "Name", 2, "Имя", 120);
-            Utility.SetupColumn(grid, "Goals", 3, "Гол", 35);
-            Utility.SetupColumn(grid, "Fouls", 4, "Фолы", 120);
-            Utility.HideColumn(grid, "IsWomen");
+            grid.SetupColumn("DispPosition", 0, "А", 20);
+            grid.SetupColumn("Number", 1, "№", 45);
+            grid.SetupColumn("Name", 2, "Имя", 120);
+            grid.SetupColumn("Goals", 3, "Гол", 35);
+            grid.SetupColumn("Fouls", 4, "Фолы", 120);
+            grid.HideColumn("IsWomen");
         }
 
 
@@ -76,9 +76,9 @@ namespace QStatitstics
         {
             var bindingSource = new BindingSource {DataSource = EventList};
             EventsGrid.DataSource = bindingSource;
-            Utility.SetupColumn(EventsGrid, "EventTime", 0, "Время", 50);
-            Utility.SetupColumn(EventsGrid, "Name", 1, "Событие", 130);
-            Utility.SetupColumn(EventsGrid, "Player1Name", 2, "Игрок", 130);
+            EventsGrid.SetupColumn("EventTime", 0, "Время", 50);
+            EventsGrid.SetupColumn("Name", 1, "Событие", 130);
+            EventsGrid.SetupColumn("Player1Name", 2, "Игрок", 130);
         }
 
         private void EventTypeBox_SelectedIndexChanged(object sender, EventArgs e)

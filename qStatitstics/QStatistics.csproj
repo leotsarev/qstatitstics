@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>QStatitstics</RootNamespace>
     <AssemblyName>QStatitstics</AssemblyName>
@@ -84,11 +84,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.256001">
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.421302">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.6" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="ShowScoreForm.resx" />

@@ -27,13 +27,13 @@ namespace QStatitstics
             dt = mAdapter.GetMatchesList();
 
             MatchesGrid.DataSource = new DataView(dt, "", "", DataViewRowState.OriginalRows);
-            Utility.HideColumn(MatchesGrid, "MatchId");
-            Utility.HideColumn(MatchesGrid, "HomeTeam");
-            Utility.HideColumn(MatchesGrid, "VisitorsTeam");
-            Utility.SetupColumn(MatchesGrid, "HomeTeamName", 0, "Хозяева", 150);
-            Utility.SetupColumn(MatchesGrid, "HomeScore", 1, "Счет", 50);
-            Utility.SetupColumn(MatchesGrid, "VisitorsTeamName", 2, "Гости", 150);
-            Utility.SetupColumn(MatchesGrid, "VisitorsScore", 3, "Счет", 50);
+            MatchesGrid.HideColumn("MatchId");
+            MatchesGrid.HideColumn("HomeTeam");
+            MatchesGrid.HideColumn("VisitorsTeam");
+            MatchesGrid.SetupColumn("HomeTeamName", 0, "Хозяева", 150);
+            MatchesGrid.SetupColumn("HomeScore", 1, "Счет", 50);
+            MatchesGrid.SetupColumn("VisitorsTeamName", 2, "Гости", 150);
+            MatchesGrid.SetupColumn("VisitorsScore", 3, "Счет", 50);
             DeleteButton.Enabled = ViewButton.Enabled = MatchesGrid.Rows.Count > 0;
         }
 
