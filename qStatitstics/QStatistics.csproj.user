@@ -19,9 +19,6 @@
     <Compile Update="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MatchesListForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="MatchForm.cs">
       <SubType>Form</SubType>
     </Compile>
